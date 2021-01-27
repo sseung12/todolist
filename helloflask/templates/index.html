@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todolist</title>
+  <link rel="stylesheet" href="static/css/style.css?ver=12">
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+  <script type="text/javascript">
+    // 페이지 마다 링크에 색 변경]
+    function link_change(){
+        let url = (document.location.pathname).slice(1);
+        console.log(url);
+        if(url===""){
+          document.getElementById("index").style.color="darkorange";
+          return;}
+        document.getElementById(url).style.color="darkorange";
+        
+      }
+    // 디지털 시계 
+    function digital_time(){
+      let today = new Date();
+      let hh = today.getHours();
+      let mm = today.getMinutes();
+      // let ss = today.getSeconds();
+      let MM = today.getMonth();
+      let DD = today.getDate();
+      let am_pm = hh>=12 ? "pm" :"am";
+      mm=  mm<10 ? "0"+mm : mm;
+      hh = hh>12 ?hh-12 :hh;
+      let day = ["January","Feburary","March","May","June","July","Agust","September","October","November","December"];
+
+      document.getElementById("hour").innerHTML=hh;
+      document.getElementById("min").innerText=mm;
+      // document.getElementById("second").innerText = ss;
+      document.getElementById("am_pm").innerHTML = am_pm;
+      document.getElementById("month").innerHTML=day[MM];
+      document.getElementById("day").innerHTML=DD+"th";
+      
+    }
+    function sec_time(){
+      let today = new Date();
+      let ss = today.getSeconds();
+      let result =(60-ss)*1000+300;
+      return result;
+    }
+    
+    function base_date(){
+      let today = new Date();
+      let month = today.getMonth()+1;
+      month = month < 10 ? "0"+String(month) : String(month);
+      let time = today.getFullYear()+"-"+month+"-"+today.getDate();
+      let input = document.getElementById('date');
+      input.setAttribute("value",time);
+      return ;
+
+    }
+    function base_time(){
+      let today = new Date();
+      let min = today.getMinutes() <10 ? "0"+today.getMinutes() : today.getMinutes();
+      let result = today.getHours()+":"+ min;
+      let input = document.getElementById('time');
+      input.setAttribute("value",result);
+      return ;
+    }
+    
+    
+    </script>
+    {% block script %}
+      <script>
+        function press(f){
+          if(f.keyCode ==13){
+          todoform.submit();
+      }
+    }
+      </script>
+    {% endblock script %}
+
+<body onload="document.todoform.title.focus();">
+
+  <header>
+    <div class="title">ToDolist</div>
+    <div class="todolink">
+      <ul>
+        <li><a id="index" href="/">Todo</a></li>
+        <li><a id="doing" href="/doing">Doing</a></li>
+        <li><a id="done" href="/done">Done</a></li>        
+      </ul>
+    </div>
+  </header>
+  <div class="container">
+    <div class="main">
+      <div class="digital_clock">
+        <div class="time">
+          <div class="time_top"> 
+            <div id="hour"></div>
+            <div id ="min"></div>
+            <div id="am_pm"></div>
+          </div>
+       
+          <div class="time_bottom">
+            <div id="month"></div>
+            <div id="day"></div>
+          </div>
+        </div>
+      </div>
+        {% block todoform %}
+        
+      
+          <form name ="todoform"action="/test" method="POST">
+          
+            <div class="form">
+              <input required focus="true" name="title"id="enroll" label="TODO" type="text" onkeypress="press(this.form)">
+              <input type="submit" value="GO">
+            </div>
+            <div class="input_date">
+              <input id ="date" name="date"type="date" onkeypress="press(this.form)">
+              <input id ="time" name="time"type="time" onkeypress="press(this.form)" >
+            </div>
+          </form>
+        {% endblock todoform %}
+
+            
+          </div>
+        </div>
+
+  </div>
+    <script>
+      link_change();
+      digital_time();
+      setInterval(digital_time,sec_time());
+    </script>
+    {% block script_bottom %}
+      <script>
+        base_date();
+        base_time();
+      </script>
+    {% endblock script_bottom %}
+</body>
+</html>

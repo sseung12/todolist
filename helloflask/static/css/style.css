@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital@1&family=Noto+Sans:wght@700&display=swap');
+body{
+  margin:0;
+  padding:0;
+  background-color: #FBF8EF
+}
+
+
+header{
+  box-sizing: border-box;
+  min-height: 120px;
+  max-width: 1280px;
+  margin :0 auto;
+  display: flex;
+  justify-content: space-between;
+
+}
+.title{
+  
+  font-size: 8em;
+  font-family: 'Bodoni Moda', serif;
+  text-shadow: 5px 5px 10px #fbf8ef;
+  
+}
+
+.todolink{
+  margin:0;
+  padding:0;
+  width:25%;
+  height:66px;
+  overflow: hidden;
+  align-self: flex-end;
+}
+.todolink ul li{
+  display: inline;
+  margin-left: 10px;  
+}
+.todolink ul li a{
+  color:black;
+  font-size: 1.7em;
+  text-decoration: none;
+  font-family: 'Bodoni Moda', serif;
+}
+.todolink ul li a:hover{
+  color:darkorange;
+}
+
+.container{
+  margin:0 auto;
+  max-width: 1280px;
+  height:100vh;
+  overflow: hidden;
+  background-image: url(../img/cat.jpg);
+  background-position:  140% 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  opacity: 0.8;
+}
+.main{
+  background-color: aliceblue;
+  width: 38%;
+  height: 73vh;
+  margin: 0 auto;
+  padding:20px;
+  opacity: 0.8;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+
+
+.form{
+  max-width: 30em;
+  margin : 10px 30px;
+  display:flex;
+  justify-content: space-around;
+  position: relative;
+  bottom:150px;
+  align-self: flex-end;
+}
+.form input[type=text]{
+  width: 30vw;
+  height: 45px;
+  text-align: center;
+  border-radius: 3em;
+  font-size: 30px;
+  box-shadow: 10px 10px 20px bisque;
+}
+.todolist{
+  margin :10px 30px;
+}
+.form input[type=submit]{
+  min-width: 50px;
+  height: 50px;
+  border-radius: 20px;
+}
+
+.todllist div{
+  display: flex;
+}
+
+.form input[type=submit]:hover{
+  background-color: black;
+  color:white;
+  
+  
+
+}
+.form input[type=text]:focus{
+  outline-style: none;
+
+}
+/* 시계 */
+.digital_clock{
+  background-image: url("../img/clock.jpg");
+  width:65%;
+  max-height: 150px;
+  min-height: 100px;
+  margin : 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  padding:0;
+}
+
+#hour::after{
+  content: ":";
+ 
+}
+.time{
+  min-width: 220px;
+}
+.time_top{
+  display :flex;
+  justify-content: center;
+  font-size : 2em;
+
+}
+.time_bottom{
+  display:flex;
+  justify-content: center;
+  font-size:1.1em;
+}
+#month::after{
+  content :"-";
+}
+
+.input_date{
+  margin :20px 30px;
+  position: relative;
+  bottom : 150px;
+}
+.doinglist{
+  width:88%;
+  min-height: 380px;
+}
+.line{
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-evenly;
+  margin:8px 20px;
+  padding-bottom:3px;
+}
+
+.line div{
+  height: 20px;
+  box-sizing: border-box;
+}
+.line_title{
+  width:200px;
+  flex-grow:3;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  
+}
+
+.line_date{
+  flex-grow:1;  
+}
+.line_time{
+  flex-grow:1
+}
+.clear{
+  text-align: center;
+  width:50px;
+  height:25px;
+  /* border :1px solid black; */
+}
+
+.clear :hover{
+}
+.line_date::after{
+  content: ":";
+}
+
+.paging{
+  align-self:flex-end;
+  display: flex;
+  justify-content: space-around;
+  width:250px;
+  margin:0;
+  padding:0;
+}
+.paging a{
+  display: inline-block;
+  
+  padding:2px;
+  box-sizing: border-box;
+  width:40px;
+  height:22px;
+  text-align:center;
+  text-decoration: none;
+}
+.paging  :hover{
+  border:1px solid black;
+  background-color: blanchedalmond;
+  border-radius: 5px;
+}
+.paging  a{
+  color:black;
+  text-decoration: none;
+}

@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block todoform %}
+
+<div id="doinglist" class="doinglist">
+  {% for line in result%}   
+  <div id ="{{line[0]}}"class="line">
+    <div class="line_date">{{line[2]}}</div>
+    <div class="line_title">{{line[1]}}</div>
+    <div class="line_time">{{line[3]}}</div>
+  </div>
+  {% endfor %}
+  
+</div>
+<div class="paging">
+  <a href="/done?page={{paging_items.prev_index}}"><<</a>
+  {% if paging_items.page-1 ==0 %}
+    <a href="/done?page=1"><</a>
+    {% else %}
+    <a href="/done?page=1"><</a>
+  {% endif %}
+    
+  {% for line in range(paging_items.first_index+1,paging_items.last_index+1) %}
+    <a id={{line}} href="/done?page={{line}}">{{line}}</a>
+  {% endfor %}
+  {% if paging_items.page+1 > paging_items.page_count %}
+    <a href="/done?page={{paging_items.page}}">></a>   
+  {% else %}
+    <a href="/done?page={{paging_items.page+1}}">></a> 
+  {% endif %}
+    <a href="/done?page={{paging_items.next_index}}">>></a>
+  </div>
+</div>
+
+{% endblock todoform %}

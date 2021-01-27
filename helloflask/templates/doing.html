@@ -1,0 +1,77 @@
+{% extends "index.html"%}
+
+{% block script %}
+<script>
+  function ajax(id){
+  console.log(id)
+  let xhr = new XMLHttpRequest();
+  xhr.open("post","/ajax",true);
+  
+  xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  xhr.send("id="+id);
+  // xhr.onreadystatechagne = function(){
+  //   if(xhr.readyState ==4 && xhr.status ==200){
+      let parent = document.getElementById("doinglist");
+      console.log(parent);
+      let child = document.getElementById(id);
+      console.log(child);
+      parent.removeChild(child);
+      console.log("ok");
+    // }
+  // };
+}
+function check_page(num){
+  console.log(num);
+  let obj =document.getElementById(num);
+  obj.style.background="blanchedalmond";
+  obj.style.border="1px solid black";
+  obj.style.borderRadius="5px";
+  console.log(obj);
+}
+</script>
+  
+{% endblock script %}
+  
+
+{% block todoform %}
+
+<div id="doinglist" class="doinglist">
+  {% for line in result%}   
+  <div id ="{{line[0]}}"class="line">
+    <div class="line_date">{{line[2]}}</div>
+    <div class="line_title">{{line[1]}}</div>
+    <!-- <div class="line_time">{{line[3]}}</div> -->
+    <button class="clear" onclick="ajax({{line[0]}})">Clear</button>
+  </div>
+  {% endfor %}
+  
+  </div>
+  <div class="paging" >
+      <a href="/doing?page={{paging_items.prev_index}}"><<</a>
+    {% if paging_items.page-1 ==0 %}
+      <a href="/doing?page=1"><</a>
+      {% else %}
+      <a href="/doing?page=1"><</a>
+    {% endif %}
+      
+    {% for line in range(paging_items.first_index+1,paging_items.last_index+1) %}
+      <a id={{line}} href="/doing?page={{line}}">{{line}}</a>
+    {% endfor %}
+    {% if paging_items.page+1 > paging_items.page_count %}
+      <a href="/doing?page={{paging_items.page}}">></a>   
+    {% else %}
+      <a href="/doing?page={{paging_items.page+1}}">></a> 
+    {% endif %}
+      <a href="/doing?page={{paging_items.next_index}}">>></a>
+      </div>
+  </div>
+
+
+
+{% endblock todoform %}
+{% block script_bottom %}
+<script>
+  check_page({{paging_items.page}})
+</script>
+  
+{% endblock script_bottom %}
