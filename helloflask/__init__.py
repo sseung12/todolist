@@ -124,29 +124,6 @@ def doing():
 
   return render_template("doing.html",result=result,paging_items=paging_items)
 
-@app.route("/test",methods=['POST'])
-def test():
-  title = request.form['title']
-  time = request.form['time']
-  date = request.form['date']
-  data =[title,date,time]
-  conn = sqlite3.connect("./static/db/todolistdb.db")
-  
-  with conn:
-    cur = conn.cursor()
-    sql = "insert into list(title,date,time) values(?,?,?)"
-    cur.execute(sql,data)
-    conn.commit
-
-  return redirect(url_for("doing"))
-
-
-@app.route("/tt")
-def tt():
-  lst = {"id" :11
-   ,"name":"이승수"}
-  return render_template("test.html",lst = lst)
-
 
 @app.route("/ajax",methods=['POST'])
 def ajax():
